@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useNotifications } from "../../hooks/app-hooks/useNotification";
 import { UseMutationResult, useMutation } from "react-query";
-import { login, register_job_seeker } from "../call-service/auth";
+import { login, register } from "../call-service/auth";
 import { Alert } from "react-native";
 import { storeAppData } from "../../globals/helper_functions/storingAppData";
 import { LoginData, RegisterData } from "../../globals/types";

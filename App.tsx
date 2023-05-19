@@ -76,10 +76,6 @@ export default function App() {
               <NotificationProvider>
                 <ApiProvider setIsAuthenticated={setIsAuthenticated}>
                   <HeaderProvider>
-                    {/* <DrawerNavigations /> */}
-
-                    {/* <Onboarding /> */}
-
                     {isAuthenticated ? (
                       <DrawerNavigations />
                     ) : (

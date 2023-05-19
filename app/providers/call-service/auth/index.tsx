@@ -1,5 +1,4 @@
-// import axios, { axiosPrivate } from "../../api/axios";
-import axios from 'axios';
+import axios, { axiosPrivate } from "../../api/axios";
 
 
 export async function login(username: string, password: string) {
@@ -11,7 +10,7 @@ export async function login(username: string, password: string) {
   };
 
   try {
-    const response = await axios.post("https://dummyjson.com/auth/login", data);
+    const response = await axiosPrivate.post("/auth/login", data);
 
     console.log("response", response.data);
 
@@ -23,7 +22,7 @@ export async function login(username: string, password: string) {
 }
 
 
-export async function register_job_seeker(
+export async function register(
   email: string,
   password: string,
   full_name: string,
@@ -33,7 +32,7 @@ export async function register_job_seeker(
 ) {
   if (!email || !password || !full_name || !phone_number) return;
 
-  const response = await axios.post(`auth/create-seeker/`, {
+  const response = await axios.post(`auth/create`, {
     email,
     password,
     full_name,

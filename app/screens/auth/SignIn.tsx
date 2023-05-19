@@ -46,7 +46,7 @@ const SignIn = ({ navigation }: { navigation: any }) => {
     username: string;
     password: string;
   }) => {
-    console.log('inside life', username, password);
+    // console.log('inside life', username, password);
     
     mutate({ username, password }); 
     // login(username, password )
