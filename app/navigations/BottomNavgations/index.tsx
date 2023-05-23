@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Profile from "../../screens/Profile/Profile";
+import {Profile,Cart,Saved,Home } from "../../screens";
 import { scale } from "react-native-size-matters";
 import { MaterialIcons,MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -49,7 +49,7 @@ const BottomNavigations = () => {
     >
       <Tab.Screen
         name="Home"
-        component={Profile }
+        component={Home }
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-outline" size={24} color={color} />
@@ -58,7 +58,7 @@ const BottomNavigations = () => {
       />
       <Tab.Screen
         name="Saved"
-        component={ Profile}
+        component={ Saved}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="star-outline" size={24} color={color} />
@@ -66,15 +66,7 @@ const BottomNavigations = () => {
         }}
       />
 
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="person-outline" size={24} color={color} />
-          ),
-        }}
-        name="Account"
-        component={Profile}
-      />
+    
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (
@@ -82,6 +74,15 @@ const BottomNavigations = () => {
           ),
         }}
         name="Cart"
+        component={Cart}
+      />
+        <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="person-outline" size={24} color={color} />
+          ),
+        }}
+        name="Account"
         component={Profile}
       />
     </Tab.Navigator>

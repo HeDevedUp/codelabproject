@@ -23,7 +23,6 @@ const SignIn = ({ navigation }: { navigation: any }) => {
     <View>
       <Container
         navigationComponent={<AuthHeader navigation={navigation} />}
-        image={auth_assets.pwr_email_page}
       >
         <View>
           <Text

@@ -4,7 +4,8 @@ const SHARED_COLORS = {
   secondary: "#000022",
   app_base: "#F28C28",
   white: "#fff",
-  button:"#2C3E50"
+  button:"#2C3E50",
+  gray:"#D3D3D3"
 };
 
 const theme = {
@@ -19,7 +20,7 @@ const theme = {
     warning: "#FCBE2B",
     error: "#FF0000",
     placeholder: "#D9D9D9",
-    gray:"#D3D3D3"
+
   },
 
   darkTheme: {

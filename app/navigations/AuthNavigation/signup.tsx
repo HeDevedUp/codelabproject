@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Page1,  } from "../../screens/auth/Signup";
+import { SignUp } from "../../screens";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +14,7 @@ const SignUpNavigations = () => {
         }}
         initialRouteName="page1"
       >
-        <Stack.Screen name="page1" component={Page1} />
+        <Stack.Screen name="page1" component={SignUp} />
       
       </Stack.Navigator>
     </>

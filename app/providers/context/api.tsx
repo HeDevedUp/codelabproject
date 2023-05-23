@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import { useNotifications } from "../../hooks/app-hooks/useNotification";
 import { UseMutationResult, useMutation } from "react-query";
 import { login, register } from "../call-service/auth";
@@ -6,18 +6,22 @@ import { Alert } from "react-native";
 import { storeAppData } from "../../globals/helper_functions/storingAppData";
 import { LoginData, RegisterData } from "../../globals/types";
 
-const ApiContext = createContext<{
-  useLogin: any;
-  useRegister: any;
-}>({
-  useLogin: () => {},
-  useRegister: () => {},
+interface ApiContextType {
+  useLogin: () => UseMutationResult<any, unknown, LoginData>;
+  useRegister: () => UseMutationResult<any, unknown, RegisterData>;
+  logout: () => void;
+}
+
+const ApiContext = createContext<ApiContextType>({
+  useLogin: () => ({} as UseMutationResult<any, unknown, LoginData>),
+  useRegister: () => ({} as UseMutationResult<any, unknown, RegisterData>),
+  logout: () => {},
 });
 
-export const ApiProvider = (props: {
-  children: any;
-  setIsAuthenticated: any;
-}) => {
+export const ApiProvider: React.FC<{
+  children: React.ReactNode;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ children, setIsAuthenticated }) => {
   const { showNotification } = useNotifications();
 
   function useLogin(): UseMutationResult<any, unknown, LoginData> {
@@ -40,7 +44,7 @@ export const ApiProvider = (props: {
             value: res,
           });
 
-          props.setIsAuthenticated(true);
+          setIsAuthenticated(true);
         },
         onError: (error: any) => {
           console.log("error", error);
@@ -55,11 +59,20 @@ export const ApiProvider = (props: {
     );
   }
 
+  function logout(): void {
+    // Clear the stored token and data
+    storeAppData({ item: "token", value: null });
+    storeAppData({ item: "data", value: null });
+
+    // Set the authentication state to false
+    setIsAuthenticated(false);
+  }
+
   function useRegister(): UseMutationResult<any, unknown, RegisterData> {
     return useMutation<any, unknown, RegisterData>(
-      ["login"],
+      ["register"],
       (data: RegisterData) =>
-        register_job_seeker(
+        register(
           data.email,
           data.password,
           data.full_name,
@@ -80,7 +93,7 @@ export const ApiProvider = (props: {
               value: res.data.tokens,
             });
           }, 1000);
-          props.setIsAuthenticated(true);
+          setIsAuthenticated(true);
         },
         onError: (error: any) => {
           console.log("error", error);
@@ -95,15 +108,14 @@ export const ApiProvider = (props: {
     );
   }
 
-  const callActions = {
+  const callActions: ApiContextType = {
     useLogin,
     useRegister,
+    logout,
   };
 
   return (
-    <ApiContext.Provider value={callActions}>
-      {props.children}
-    </ApiContext.Provider>
+    <ApiContext.Provider value={callActions}>{children}</ApiContext.Provider>
   );
 };
 

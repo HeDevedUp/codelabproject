@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { EmailPage, ResetPage } from "../../screens/auth/ForgotPassword";
+import { EmailPage, ResetPage } from "../../screens";
 
 const Stack = createStackNavigator();
 

@@ -2,9 +2,8 @@ import { createContext } from "react";
 
 type Theme = {
   primary: string;
-  facebook:string,
+  facebook: string;
   secondary: string;
-  light_blue: string;
   white: string;
   accent: string;
   background: string;
@@ -14,18 +13,17 @@ type Theme = {
   success: string;
   warning: string;
   error: string;
-  placeholder: string,
-  gray:string,
-  app_base:string,
-  button:string
+  placeholder: string;
+  gray: string;
+  app_base: string;
+  button: string;
 };
 
 const themeContext = createContext<Theme>({
   primary: "",
-  facebook:"",
+  facebook: "",
   secondary: "",
   white: "",
-  light_blue: "",
   accent: "",
   background: "",
   text: "",
@@ -35,9 +33,9 @@ const themeContext = createContext<Theme>({
   warning: "",
   error: "",
   placeholder: "",
-  gray:"",
-  app_base:"",
-  button:""
+  gray: "",
+  app_base: "",
+  button: ""
 });
 
 export default themeContext;

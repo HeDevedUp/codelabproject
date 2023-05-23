@@ -1,8 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import SecondOnboarding from "../../screens/Onboarding/SecondOnboarding";
-import FirstOnboarding from "../../screens/Onboarding/FirstOnboarding"
+import {FirstOnboarding,SecondOnboarding} from "../../screens";
 const Stack = createStackNavigator();
 
 const OnbaordingNavigations = () => {

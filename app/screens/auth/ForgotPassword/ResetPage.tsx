@@ -30,7 +30,6 @@ const ResetPage = ({ navigation, route }: any) => {
     <View>
       <Container
         navigationComponent={<AuthHeader navigation={navigation} />}
-        image={auth_assets.pwr_reset_page}
       >
         <View>
           <Text

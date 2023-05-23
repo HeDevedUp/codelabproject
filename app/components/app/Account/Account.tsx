@@ -32,8 +32,8 @@ const Account: React.FC = () => {
     <View>
       {items.map((item: IconItem, index: number) => (
         <View key={index} style={{ flexDirection: 'row',gap:50,height:scale(42), alignItems:'center', }}>
-         <Ionicons name={item.icon as keyof typeof Ionicons} size={30} color={theme.app_base} />
-          <Text style={{fontWeight:'700'}}>{item.name}</Text>
+         <Ionicons name={item.icon as "notifications" | "create" | "heart" | "list" | "location" | "card" | "settings" | "log-out" | "key" | "push" | "map" | "filter" | "at" | "link" | "search" | "image" | "text"} size={30} color={theme.app_base} />
+            <Text style={{fontWeight:'700'}}>{item.name}</Text>
         </View>
       ))}
     </View>

@@ -30,13 +30,20 @@ import BottomNavigations from "../BottomNavgations";
 import Header from "../../components/app/Header/Header";
 import { EventRegister } from "react-native-event-listeners";
 import themeContext from "../../config/theme/themeContext";
+import ApiContext from "../../providers/context/api";
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawerContent = (props: any) => {
   const theme = useContext(themeContext);
-
+  const { logout } = useContext(ApiContext);
   const [mode, setMode] = React.useState<"light" | "dark">("light");
+
+  const handleLogout = () => {
+    logout();
+    // Additional logic or redirection after logout
+  };
+
   return (
     <View style={styles.drawerContainer}>
       <View style={styles.drawerHeader}>
@@ -57,10 +64,8 @@ const CustomDrawerContent = (props: any) => {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       <TouchableOpacity
-        onPress={() => {
-          setMode(mode === "light" ? "dark" : "light");
-          EventRegister.emit("changeMode", mode);
-        }}
+        onPress={handleLogout} 
+
         style={styles.logoutButton}
       >
         <Text style={styles.logoutText}>Logout</Text>

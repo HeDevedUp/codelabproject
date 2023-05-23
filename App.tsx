@@ -9,7 +9,6 @@ import DrawerNavigations from "./app/navigations/DrawerNavigation";
 import { StatusBar, Text, View } from "react-native";
 import { AppProvider } from "./app/providers/context/app";
 import { NotificationProvider } from "./app/providers/context/notification";
-import { HeaderProvider } from "./app/providers/context/header";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ApiProvider } from "./app/providers/context/api";
 import { retrieveAppData } from "./app/globals/helper_functions/storingAppData";
@@ -68,20 +67,17 @@ export default function App() {
       <QueryClientProvider client={new QueryClient()}>
         <NavigationContainer>
           <AppProvider>
-            <themeContext.Provider
-              value={
+            <themeContext.Provider value={
                 isDarkMode === "light" ? theme.lightTheme : theme.darkTheme
               }
             >
               <NotificationProvider>
                 <ApiProvider setIsAuthenticated={setIsAuthenticated}>
-                  <HeaderProvider>
                     {isAuthenticated ? (
                       <DrawerNavigations />
                     ) : (
                       <AuthNavigations />
                     )}
-                  </HeaderProvider>
                 </ApiProvider>
               </NotificationProvider>
             </themeContext.Provider>

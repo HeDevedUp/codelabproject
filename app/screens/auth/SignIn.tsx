@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import React, { useContext } from "react";
 import Container from "./Container";
-import { auth_assets } from "./assets";
 import { Button, Input, Text } from "../../components/ui";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -9,9 +8,6 @@ import { scale } from "react-native-size-matters";
 import themeContext from "../../config/theme/themeContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Seperator } from "../../components/ui/_helpers";
-import { NotificationContext } from "../../providers/context/notification";
-import { useNotifications } from "../../hooks/app-hooks/useNotification";
-import { login } from "../../providers/call-service/auth";
 
 import ApiContext from "../../providers/context/api";
 
@@ -25,19 +21,9 @@ const SignInSchema = Yup.object().shape({
 
 const SignIn = ({ navigation }: { navigation: any }) => {
   const theme = useContext(themeContext);
-  const { showNotification } = useNotifications();
 
   const { useLogin } = useContext(ApiContext);
   const { mutate, isLoading, isError } = useLogin();
-
-  const handleButtonPress = () => {
-    showNotification({
-      title: "New message",
-      type: 1,
-      message: "You have a new message from John",
-      action: "View",
-    });
-  };
 
   const handleLogin =  ({
     username,
